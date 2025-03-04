@@ -1,0 +1,54 @@
+# Python virtual environment
+venv/
+env/
+ENV/
+.env
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+
+# Cache and temporary files
+cache/
+temp/
+*.tmp
+.cache
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Log files
+*.log
+logs/
+
+# Project specific
+# Uncomment the following line if you don't want to track CSV files
+# *.csv
+
+# API keys and sensitive files
+.env.local
+.env.development
+.env.production
+config.ini
+
+# Visualization output (optional)
+# visualizations/
+
+# Large files over 100MB that may cause issues with git
+# Add specific large files as needed 
