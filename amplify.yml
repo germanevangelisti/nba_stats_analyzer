@@ -1,0 +1,29 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - pip install -r requirements.txt
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - pip install -r requirements.txt
+    build:
+      commands:
+        - echo "Build completo"
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+buildspec:
+  webBuild:
+    buildSteps:
+      - build:
+          commands:
+            - echo "Empezando el despliegue..."
+            - pip install -r requirements.txt
+            - echo "Instalación de dependencias completada" 

@@ -1,0 +1,22 @@
+{
+  "name": "nba-stats-analyzer",
+  "version": "1.0.0",
+  "description": "Analizador de estadísticas de la NBA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "pip install -r requirements.txt"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "child_process": "^1.0.2",
+    "path": "^0.12.7",
+    "fs": "0.0.1-security"
+  },
+  "author": "",
+  "license": "MIT"
+} 

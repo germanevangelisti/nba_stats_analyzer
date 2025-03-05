@@ -1618,8 +1618,12 @@ def main():
         app = create_dashboard(df)
         
         print("Iniciando el Dashboard NBA...")
-        print("Navega a http://127.0.0.1:8050/ en tu navegador para ver el dashboard.")
-        app.run_server(debug=True)
+        host = os.environ.get('HOST', '0.0.0.0')
+        port = int(os.environ.get('PORT', 8050))
+        debug = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 't')
+        
+        print(f"Navega a http://{host}:{port}/ en tu navegador para ver el dashboard.")
+        app.run_server(host=host, port=port, debug=debug)
     
     except Exception as e:
         print(f"Error al iniciar el dashboard: {e}")

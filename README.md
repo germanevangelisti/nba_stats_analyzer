@@ -185,15 +185,49 @@ Each statistic is assigned a specific weight based on its importance for predict
 - `advanced_stats.py` - Obtains advanced team metrics
 - `visualize_stats.py` - Generates static visualizations
 - `dashboard.py` - Interactive web dashboard with Dash and Plotly
+- `app.py` - Main entry point for AWS Amplify deployment
 - `requirements.txt` - Project dependencies
 - `visualizations/` - Folder with generated visualizations
 - `cache/` - Cache folder for NBA API data
 - `*.csv` - CSV files with collected data
+- `amplify.yml` - Configuration file for AWS Amplify
+- `buildspec.yml` - Build specification for AWS Amplify
+- `server.js` - Node.js proxy server for AWS Amplify
+- `Procfile` - Process file for web deployment
+
+## Deployment on AWS Amplify
+
+This project is configured for deployment on AWS Amplify. To deploy:
+
+1. **Connect your repository to Amplify**:
+   - Log in to AWS Amplify Console
+   - Click "New App" > "Host Web App"
+   - Connect your GitHub repository
+   - Select the branch to deploy
+   - Follow the Amplify wizard to configure settings
+
+2. **Configure Build Settings**:
+   - Amplify will use the `amplify.yml` and `buildspec.yml` files for build configuration
+   - Ensure the files are properly committed to your repository
+
+3. **Environment Variables**:
+   - Set the following environment variables in Amplify Console:
+     - `DEBUG`: "False" (for production)
+     - `PORT`: "8050" (Dash default port)
+
+4. **Monitor Deployment**:
+   - Amplify will build and deploy your application
+   - You can monitor build logs in the Amplify Console
+   - Once deployed, your app will be accessible at the provided Amplify URL
+
+5. **Custom Domain (Optional)**:
+   - Configure a custom domain for your app in the Amplify Console
 
 ## Acknowledgments
 
 - [NBA API](https://github.com/swar/nba_api) - Library providing access to official NBA data
 - [Plotly](https://plotly.com/) and [Dash](https://dash.plotly.com/) - Tools for creating interactive visualizations
+- [AWS Amplify](https://aws.amazon.com/amplify/) - Deployment and hosting platform
 
 ## License
 
