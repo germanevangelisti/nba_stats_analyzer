@@ -1,0 +1,48 @@
+# Archivos de sistema
+.DS_Store
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+ENV/
+env/
+.env
+
+# Archivos temporales
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Archivos de AWS Amplify (ya no necesarios)
+amplify.yml
+server.js
+Procfile
+
+# Archivos Git
+.git/
+.gitignore
+
+# Archivos de desarrollo
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos específicos para desarrollo local
+node_modules/ 

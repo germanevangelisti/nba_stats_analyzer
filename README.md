@@ -185,49 +185,100 @@ Each statistic is assigned a specific weight based on its importance for predict
 - `advanced_stats.py` - Obtains advanced team metrics
 - `visualize_stats.py` - Generates static visualizations
 - `dashboard.py` - Interactive web dashboard with Dash and Plotly
-- `app.py` - Main entry point for AWS Amplify deployment
+- `application.py` - Main entry point for AWS Elastic Beanstalk deployment
 - `requirements.txt` - Project dependencies
 - `visualizations/` - Folder with generated visualizations
 - `cache/` - Cache folder for NBA API data
 - `*.csv` - CSV files with collected data
-- `amplify.yml` - Configuration file for AWS Amplify
-- `buildspec.yml` - Build specification for AWS Amplify
-- `server.js` - Node.js proxy server for AWS Amplify
+- `.ebextensions/` - Configuration files for Elastic Beanstalk
 - `Procfile` - Process file for web deployment
 
-## Deployment on AWS Amplify
+## Deployment on AWS Elastic Beanstalk
 
-This project is configured for deployment on AWS Amplify. To deploy:
+This project is configured for deployment on AWS Elastic Beanstalk, which provides an optimal environment for Python web applications.
 
-1. **Connect your repository to Amplify**:
-   - Log in to AWS Amplify Console
-   - Click "New App" > "Host Web App"
-   - Connect your GitHub repository
-   - Select the branch to deploy
-   - Follow the Amplify wizard to configure settings
+### Prerequisites
 
-2. **Configure Build Settings**:
-   - Amplify will use the `amplify.yml` and `buildspec.yml` files for build configuration
-   - Ensure the files are properly committed to your repository
+1. Install the AWS CLI:
+   ```
+   pip install awscli
+   aws configure  # Configure with your AWS credentials
+   ```
 
-3. **Environment Variables**:
-   - Set the following environment variables in Amplify Console:
-     - `DEBUG`: "False" (for production)
-     - `PORT`: "8050" (Dash default port)
+2. Install the Elastic Beanstalk CLI:
+   ```
+   pip install awsebcli
+   ```
 
-4. **Monitor Deployment**:
-   - Amplify will build and deploy your application
-   - You can monitor build logs in the Amplify Console
-   - Once deployed, your app will be accessible at the provided Amplify URL
+### Deployment Steps
 
-5. **Custom Domain (Optional)**:
-   - Configure a custom domain for your app in the Amplify Console
+1. **Create an Elastic Beanstalk application** (first time only):
+   ```
+   eb init -p python-3.9 nba-stats-analyzer
+   ```
+   - Follow the prompts to select your region and set up SSH (if needed)
+
+2. **Create an environment** (first time only):
+   ```
+   eb create nba-stats-analyzer-env
+   ```
+
+3. **Deploy updates** (for subsequent deployments):
+   ```
+   eb deploy
+   ```
+
+4. **View the deployed application**:
+   ```
+   eb open
+   ```
+
+5. **Monitor the application**:
+   ```
+   eb logs          # View logs
+   eb status        # Check environment status
+   eb health        # Check environment health
+   ```
+
+### Configuration Files
+
+- `.elasticbeanstalk/config.yml`: Main EB CLI configuration
+- `.ebextensions/`: Contains configuration files for your environment
+  - `01_packages.config`: System packages to install
+  - `02_python.config`: Python-specific settings
+  - `03_files.config`: File and directory setup
+- `Procfile`: Specifies the command to start your application
+- `application.py`: Main entry point for the application
+
+### Environment Variables
+
+You can set environment variables in the AWS Elastic Beanstalk console:
+1. Go to your environment in the EB Console
+2. Click on "Configuration"
+3. Scroll to "Software" and click "Edit"
+4. Add environment variables in the "Environment properties" section:
+   - `DEBUG`: False (for production)
+   - `PORT`: 8000 (matching Procfile configuration)
+
+## Project Structure
+
+- `main.py` - Obtains basic team statistics
+- `advanced_stats.py` - Obtains advanced team metrics
+- `visualize_stats.py` - Generates static visualizations
+- `dashboard.py` - Interactive web dashboard with Dash and Plotly
+- `application.py` - Main entry point for AWS Elastic Beanstalk deployment
+- `requirements.txt` - Project dependencies
+- `visualizations/` - Folder with generated visualizations
+- `cache/` - Cache folder for NBA API data
+- `*.csv` - CSV files with collected data
+- `.ebextensions/` - Configuration files for Elastic Beanstalk
+- `Procfile` - Process file for web deployment
 
 ## Acknowledgments
 
 - [NBA API](https://github.com/swar/nba_api) - Library providing access to official NBA data
 - [Plotly](https://plotly.com/) and [Dash](https://dash.plotly.com/) - Tools for creating interactive visualizations
-- [AWS Amplify](https://aws.amazon.com/amplify/) - Deployment and hosting platform
+- [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) - Deployment and hosting platform
 
 ## License
 
