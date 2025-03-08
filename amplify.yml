@@ -11,7 +11,9 @@ frontend:
         - pip install -r requirements.txt
     build:
       commands:
-        - echo "Build completo"
+        - npm install
+        - npm start &
+        - sleep 10
   artifacts:
     baseDirectory: /
     files:
